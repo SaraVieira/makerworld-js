@@ -1,28 +1,32 @@
-import { expect, test, describe } from "vitest";
-import ScreenScraperJS from "../src";
+import { it, describe } from "vitest"
+import MakerWorldJS from "../src"
 
-describe("Search Games", () => {
-  test(
-    "should return games",
+describe("Get models", () => {
+  it(
+    "search models",
     async () => {
-      const screenScraperJS = new ScreenScraperJS({
-        devId: process.env.SCREENSCRAPPER_DEV_USERNAME as string,
-        userName: process.env.SCREENSCRAPPER_USER_USERNAME as string,
-        devPassword: process.env.SCREENSCRAPPER_DEV_PASSWORD as string,
-        userPassword: process.env.SCREENSCRAPPER_USER_PASSWORD as string,
-      });
-      const games = await screenScraperJS.searchGames({
-        game: "sonic",
-        systemId: 1,
-      });
-      if (games.length) {
-        expect(games[0].name).toBe("Sonic The Hedgehog 2");
-      } else {
-        throw new Error("oh no");
-      }
+      await new MakerWorldJS().getModels({})
     },
     {
       timeout: 200000,
     }
-  );
-});
+  )
+  it(
+    "get user",
+    async () => {
+      await new MakerWorldJS().getUser({ user: "BambuLab" })
+    },
+    {
+      timeout: 200000,
+    }
+  )
+  it(
+    "get model",
+    async () => {
+      await new MakerWorldJS().getModel({ slug: "13717-led-lamp-001" })
+    },
+    {
+      timeout: 200000,
+    }
+  )
+})
