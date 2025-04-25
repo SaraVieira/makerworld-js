@@ -1,7 +1,7 @@
 {
-  "name": "screenscraper-js",
+  "name": "makerworld-js",
   "version": "0.0.1",
-  "description": "A wrapper around the screenscraper API",
+  "description": "Unnoficial makerworld api",
   "exports": {
     ".": {
       "import": {
@@ -47,31 +47,31 @@
     "typescript",
     "esm",
     "cjs",
-    "screenscraper"
+    "makerworld"
   ],
   "author": "Sara Vieira",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SaraVieira/screenscraper-js/issues"
+    "url": "https://github.com/SaraVieira/makerworld-js/issues"
   },
-  "homepage": "https://github.com/SaraVieira/screenscraper-js#readme",
+  "homepage": "https://github.com/SaraVieira/makerworld-js#readme",
   "devDependencies": {
-    "@types/node": "^20.11.30",
-    "@typescript-eslint/eslint-plugin": "^7.3.1",
-    "@typescript-eslint/parser": "^7.3.1",
-    "@vitest/ui": "^1.4.0",
-    "del-cli": "^5.1.0",
-    "dotenv": "^16.4.5",
-    "eslint": "^8.57.0",
+    "@types/node": "^22.15.2",
+    "@typescript-eslint/eslint-plugin": "^8.31.0",
+    "@typescript-eslint/parser": "^8.31.0",
+    "@vitest/ui": "^3.1.2",
+    "del-cli": "^6.0.0",
+    "dotenv": "^16.5.0",
     "move-file-cli": "^3.0.0",
-    "semantic-release": "^23.0.5",
+    "semantic-release": "^24.2.3",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.3",
-    "vitest": "^1.4.0"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.31.0",
+    "vitest": "^3.1.2"
   },
   "dependencies": {
-    "axios": "^1.6.8",
-    "axios-retry": "^4.1.0",
-    "cheerio": "^1.0.0"
+    "@eslint/js": "^9.25.1",
+    "cheerio": "^1.0.0",
+    "eslint": "^9.25.1"
   }
 }

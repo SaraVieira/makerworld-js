@@ -1,8 +1,5 @@
-import { Cheerio } from "cheerio"
-import { getGame } from "./game"
 import * as cheerio from "cheerio"
-import { getSystems } from "./systems"
-import { AllowedLangs, GetGameProps } from "./utils/types"
+import { GetModelsParams } from "./utils/types"
 
 const fetchId = async () => {
   const html = await fetch("https://makerworld.com/").then((rsp) => rsp.text())
@@ -21,44 +18,27 @@ const fetchId = async () => {
 const baseUrlWithIdAndParams = (
   id: string,
   path: string,
-  params: Record<string, any>
+  params: Record<string, string>
 ) => `
 https://makerworld.com/_next/data/${id}/en/${path}.json?${new URLSearchParams(
   params
 ).toString()}`
 
-enum SortByModels {
-  hotScore,
-  boosts,
-  newUploads,
-  downloadCount,
-  likeCount,
-}
-
 export class MakerWorldJS {
-  public getModels = async (params: {
-    orderBy?: SortByModels
-    designCreateSince?: number
-    multiColor?: boolean
-    printDuration?: {
-      min: number
-      max: number
-    }
-    customizable?: boolean
-  }) => {
+  public getModels = async (params: GetModelsParams) => {
     const id = await fetchId()
 
     const models = await fetch(
       baseUrlWithIdAndParams(id, "3d-models", {
         orderBy: params.orderBy?.toString() || "downloadCount",
-        isPrintable: true,
-        ...(params.customizable && { customizable: true }),
+        isPrintable: "true",
+        ...(params.customizable && { customizable: "true" }),
         designCreateSince: params.designCreateSince?.toString() || "7",
         ...(params.printDuration && {
           printDuration: `${params.printDuration.min}-${params.printDuration.max}`,
         }),
         ...(params.multiColor && {
-          multiColor: true,
+          multiColor: "true",
         }),
       })
     ).then((rsp) => rsp.json())
@@ -72,6 +52,7 @@ export class MakerWorldJS {
     const user = await fetch(
       baseUrlWithIdAndParams(id, `@${params.user}`, {})
     ).then((rsp) => rsp.json())
+
     return user.pageProps.userInfo
   }
 
